@@ -1,5 +1,10 @@
 # Myview
 
+## Deployee to Git Pages
+Follow this steps 
+Run `ng build` after commond, edit index.html page to `<base href="https://rstcode.github.io/myview/">`
+and then run this cmd `ngh --dir dist/myview`
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.2.
 
 ## Development server
