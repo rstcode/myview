@@ -1,21 +1,42 @@
 import { Component, HostListener, Inject, OnInit } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
+import { rotateAnimation, } from './animations/rotateAnimation';
+import { interval, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  animations: [
+    rotateAnimation(),
+    rotateAnimation({ anchor: 'rotate90', degrees: 90 })
+  ]
 })
 export class AppComponent implements OnInit {
 
   title = 'myView';
   isFullScreen: boolean = false;
+  isSuperMode: boolean = false;
   elem: any;
   rstMode: boolean = false;
+  animation = 'rubberBand';
+  animationState = false;
+  animationWithState = false;
+  interval$: Subscription | undefined;
+  intervalVal: number = 0;
+
   constructor(@Inject(DOCUMENT) private document: any) { }
 
   ngOnInit(): void {
     this.elem = document.documentElement;
+    this.animate();
+    //this.
+    this.interval$ = interval(1000)
+      .subscribe(res => {
+        this.intervalVal = res;
+        this.animate();
+      }
+      );
   }
 
   @HostListener('window:orientationchange', ['$event'])
@@ -25,6 +46,16 @@ export class AppComponent implements OnInit {
     this.ngGOnInit();
   }
 
+  animate() {
+    this.animationState = false;
+    setTimeout(() => {
+      this.animationState = true;
+      this.animationWithState = !this.animationWithState;
+    }, 1);
+  }
+
+
+
   toggleFullScreen() {
     if (!this.isFullScreen) {
       this.openFullscreen();
@@ -32,6 +63,7 @@ export class AppComponent implements OnInit {
     else {
       this.closeFullscreen();
     }
+    this.isSuperMode = !this.isSuperMode;
     this.isFullScreen = !this.isFullScreen;
     this.ngGOnInit();
   }
@@ -73,6 +105,7 @@ export class AppComponent implements OnInit {
         //horizental mode        
         console.log("That looks good.");
         this.rstMode = true;
+        this.animate();
         break;
       case "landscape-secondary":
         console.log("Mmmh… the screen is upside down!");
@@ -82,6 +115,7 @@ export class AppComponent implements OnInit {
         //vertical mode
         console.log("Mmmh… you should rotate your device to landscape");
         this.rstMode = false;
+        this.animationState = false;
         break;
       default:
         console.log("The orientation API isn't supported in this browser :(");
