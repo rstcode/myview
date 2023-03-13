@@ -308,11 +308,11 @@
 
   <!-- Resources -->
   <!-- <h2>Resources</h2>-->
-  <p *ngIf="!rstMode">Enable auto rotate and change your screen to landscape mode</p>
+  <p *ngIf="!landscapeMode">Enable auto rotate and change your screen to landscape mode</p>
 
-  <div *ngIf="!rstMode" class="card-container">
+  <div *ngIf="!landscapeMode" class="card-container">
     <br><br>
-    <div *ngIf="!rstMode" [@rotate90]="animationWithState" class="card" target="_blank" rel="noopener">
+    <div *ngIf="!landscapeMode" [@rotate90]="animationWithState" class="card" target="_blank" rel="noopener">
       <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
         <path
           d="M7.47 21.49C4.2 19.93 1.86 16.76 1.5 13H0c.51 6.16 5.66 11 11.95 11 .23 0 .44-.02.66-.03L8.8 20.15l-1.33 1.34z">
@@ -327,7 +327,7 @@
     </div>
   </div>
 
-  <div *ngIf="rstMode" class="card-container">
+  <div *ngIf="landscapeMode" class="card-container">
     <br><br>
     <div class="card" target="_blank" *ngIf="!isFullScreen" rel="noopener" (click)="toggleFullScreen()">
       <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
@@ -347,7 +347,7 @@
 
   <input type="hidden" #selection>
 
-  <svg *ngIf="!rstMode" id="clouds" xmlns="http://www.w3.org/2000/svg" width="2611.084" height="485.677"
+  <svg *ngIf="!landscapeMode" id="clouds" xmlns="http://www.w3.org/2000/svg" width="2611.084" height="485.677"
     viewBox="0 0 2611.084 485.677">
     <title>Gray Clouds Background</title>
     <path id="Path_39" data-name="Path 39"

@@ -18,7 +18,7 @@ export class AppComponent implements OnInit {
   isFullScreen: boolean = false;
   isSuperMode: boolean = false;
   elem: any;
-  rstMode: boolean = false;
+  landscapeMode: boolean = false;
   animation = 'rubberBand';
   animationState = false;
   animationWithState = false;
@@ -104,7 +104,7 @@ export class AppComponent implements OnInit {
       case "landscape-primary":
         //horizental mode        
         console.log("That looks good.");
-        this.rstMode = true;
+        this.landscapeMode = true;
         this.animate();
         break;
       case "landscape-secondary":
@@ -114,7 +114,7 @@ export class AppComponent implements OnInit {
       case "portrait-primary":
         //vertical mode
         console.log("Mmmh… you should rotate your device to landscape");
-        this.rstMode = false;
+        this.landscapeMode = false;
         this.animationState = false;
         break;
       default:
